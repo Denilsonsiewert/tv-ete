@@ -1,0 +1,19 @@
+[
+  {
+    "tanque": "Desengraxante (Tanque 1)",
+    "ultimaAnalise": 45980,
+    "proximaAnalise": 45982,
+    "concentracao": 45980,
+    "status": "TESTE ATRASADO",
+    "proximaTroca": 46013
+  },
+  {
+    "tanque": "Estanhagem A (Tanque 12)",
+    "ultimaAnalise": 45980,
+    "proximaAnalise": 45982,
+    "concentracao": 45980,
+    "status": "OK",
+    "proximaTroca": 46008,
+    "anodos": 45467
+  }
+]
