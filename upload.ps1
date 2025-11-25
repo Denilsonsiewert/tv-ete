@@ -1,5 +1,4 @@
-
-$token = "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"
+$token = "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"
 $repo = "denilsonsiewert/tv-ete"
 $branch = "main"
 $localFolder = "C:\\ExportTV"
