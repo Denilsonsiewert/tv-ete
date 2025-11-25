@@ -4,62 +4,60 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-  <meta http-equiv="Pragma" content="no-cache"/>
-  <meta http-equiv="Expires" content="0"/>
-  <title>Painel de Planilhas</title>
-  https://fonts.googleapis.com
-  https://fonts.gstatic.com
-  https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap
+  <title>Painel Controle Estanhagem</title>
   style.css
 </head>
 <body>
-  <header>
-    <h1>📊 Painel de Planilhas</h1>
-    <p>Selecione uma planilha para abrir na TV.</p>
-    <div class="controls">
-      <label>
-        Atualização automática:
-        <select id="refreshInterval">
-          <option value="0">Desativada</option>
-          <option value="300">5 min</option>
-          <option value="600" selected>10 min</option>
-          <option value="1800">30 min</option>
-          <option value="3600">1 h</option>
-        </select>
-      </label>
-      <button id="fullscreenBtn">Tela cheia</button>
-    </div>
-  </header>
+<header>
+  <h1>📊 Controle Analítico da Estanhagem</h1>
+  <div class="controls">
+    <label>
+      Atualização automática:
+      <select id="refreshInterval">
+        <option value="0">Desativada</option>
+        <option value="300">5 min</option>
+        <option value="600" selected>10 min</option>
+        <option value="1800">30 min</option>
+      </select>
+    </label>
+    <button id="fullscreenBtn">Tela cheia</button>
+  </div>
+</header>
 
-  <main>
-    <!-- Substitua os links de EXEMPLO abaixo pelos seus links reais -->
-    <section class="grid">
-      https://docs.google.com/spreadsheets/d/EXEMPLO_1
-        <h2>Planilha 1</h2>
-        <p>Resumo de produção</p>
-      </a>
+<main class="grid">
+  <!-- Exemplo de card -->
+  <div class="card status-atrasado">
+    <h2>Desengraxante (Tanque 1)</h2>
+    <p><strong>Última Análise:</strong> 45980</p>
+    <p><strong>Próxima Análise:</strong> 45982</p>
+    <p><strong>Concentração:</strong> 45980</p>
+    <p><strong>Status:</strong> TESTE ATRASADO</p>
+    <p><strong>Próxima Troca:</strong> 46013</p>
+  </div>
 
-      https://docs.google.com/spreadsheets/d/EXEMPLO_2
-        <h2>Planilha 2</h2>
-        <p>Qualidade / Scrap</p>
-      </a>
+  <div class="card status-atrasado">
+    <h2>Ativação Ácida (Tanque 5)</h2>
+    <p><strong>Última Análise:</strong> 45980</p>
+    <p><strong>Próxima Análise:</strong> 45982</p>
+    <p><strong>Concentração:</strong> 45980</p>
+    <p><strong>Status:</strong> TESTE ATRASADO</p>
+    <p><strong>Próxima Troca:</strong> 46005</p>
+  </div>
 
-      <a class="card" href="https://docs.google.com/spreadsheets/d/Planilha 3</h2>
-        <p>OEE / Eficiência</p>
-      </a>
+  <div class="card status-ok">
+    <h2>Aditivos Estanhagem A</h2>
+    <p><strong>Última Análise:</strong> 45981</p>
+    <p><strong>Próxima Análise:</strong> 45996</p>
+    <p><strong>Status:</strong> OK</p>
+  </div>
 
-      https://docs.google.com/spreadsheets/d/EXEMPLO_4
-        <h2>Planilha 4</h2>
-        <p>Manutenção</p>
-      </a>
-    </section>
-  </main>
+  <!-- Adicione os demais tanques seguindo este padrão -->
+</main>
 
-  <footer>
-    <small>© 2025 Painel Industrial • GitHub Pages</small>
-  </footer>
+<footer>
+  <small>© 2025 Painel Industrial • GitHub Pages</small>
+</footer>
 
-  script.js</script>
+script.js</script>
 </body>
 </html>
