@@ -1,4 +1,3 @@
-
 (function(){
   const select = document.getElementById('refreshInterval');
   let timer = null;
