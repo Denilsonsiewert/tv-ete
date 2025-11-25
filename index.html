@@ -23,77 +23,62 @@
   </div>
 </header>
 
-<main class="grid">
-  <!-- Tanques -->
-  <div class="card status-atrasado">
-    <h2>Desengraxante (Tanque 1)</h2>
-    <p><strong>Última Análise:</strong> 45980</p>
-    <p><strong>Próxima Análise:</strong> 45982</p>
-    <p><strong>Concentração:</strong> 45980</p>
-    <p><strong>Status:</strong> TESTE ATRASADO</p>
-    <p><strong>Próxima Troca:</strong> 46013</p>
-  </div>
-
-  <div class="card status-atrasado">
-    <h2>Ativação Ácida (Tanque 5)</h2>
-    <p><strong>Última Análise:</strong> 45980</p>
-    <p><strong>Próxima Análise:</strong> 45982</p>
-    <p><strong>Concentração:</strong> 45980</p>
-    <p><strong>Status:</strong> TESTE ATRASADO</p>
-    <p><strong>Próxima Troca:</strong> 46005</p>
-  </div>
-
-  <div class="card status-atrasado">
-    <h2>Ativação Ácida (Tanque 6)</h2>
-    <p><strong>Última Análise:</strong> 45980</p>
-    <p><strong>Próxima Análise:</strong> 45982</p>
-    <p><strong>Concentração:</strong> 45980</p>
-    <p><strong>Status:</strong> TESTE ATRASADO</p>
-    <p><strong>Próxima Troca:</strong> 46005</p>
-  </div>
-
-  <div class="card status-atrasado">
-    <h2>Níquel Watt (Tanque 10)</h2>
-    <p><strong>Última Análise:</strong> 45980</p>
-    <p><strong>Próxima Análise:</strong> 45982</p>
-    <p><strong>Concentração:</strong> 45980</p>
-    <p><strong>Status:</strong> TESTE ATRASADO</p>
-    <p><strong>Próxima Troca:</strong> 47810</p>
-    <p><strong>Próxima Limpeza:</strong> 46077</p>
-  </div>
-
-  <div class="card status-atrasado">
-    <h2>Estanhagem A (Tanque 12)</h2>
-    <p><strong>Última Análise:</strong> 45980</p>
-    <p><strong>Próxima Análise:</strong> 45982</p>
-    <p><strong>Concentração:</strong> 45980</p>
-    <p><strong>Status:</strong> TESTE ATRASADO</p>
-    <p><strong>Próxima Troca:</strong> 46008</p>
-    <p><strong>Anodos:</strong> 45467</p>
-  </div>
-
-  <div class="card status-atrasado">
-    <h2>Estanhagem B (Tanque 13)</h2>
-    <p><strong>Última Análise:</strong> 45980</p>
-    <p><strong>Próxima Análise:</strong> 45982</p>
-    <p><strong>Concentração:</strong> 45980</p>
-    <p><strong>Status:</strong> TESTE ATRASADO</p>
-    <p><strong>Próxima Troca:</strong> 46008</p>
-    <p><strong>Anodos:</strong> 46036</p>
-  </div>
-
-  <div class="card status-ok">
-    <h2>Aditivos</h2>
-    <p><strong>Última Análise:</strong> 45981</p>
-    <p><strong>Próxima Análise:</strong> 45996</p>
-    <p><strong>Status:</strong> OK</p>
-  </div>
+<main class="grid" id="cardsContainer">
+  <!-- Cards serão gerados via JS -->
 </main>
 
 <footer>
   <small>© 2025 Painel Industrial • GitHub Pages</small>
 </footer>
 
-script.js</script>
+<script>
+let intervalo = null;
+
+async function carregarDados() {
+  try {
+    const response = await fetch('dados.json');
+    const data = await response.json();
+
+    const container = document.getElementById('cardsContainer');
+    container.innerHTML = '';
+
+    data.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'card ' + (item.status.includes('ATRASADO') ? 'status-atrasado' : 'status-ok');
+
+      let html = `<h2>${item.tanque}</h2>`;
+      html += `<p><strong>Última Análise:</strong> ${item.ultimaAnalise}</p>`;
+      html += `<p><strong>Próxima Análise:</strong> ${item.proximaAnalise}</p>`;
+      if(item.concentracao) html += `<p><strong>Concentração:</strong> ${item.concentracao}</p>`;
+      html += `<p><strong>Status:</strong> ${item.status}</p>`;
+      if(item.proximaTroca) html += `<p><strong>Próxima Troca:</strong> ${item.proximaTroca}</p>`;
+      if(item.anodos) html += `<p><strong>Anodos:</strong> ${item.anodos}</p>`;
+
+      card.innerHTML = html;
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error('Erro ao carregar JSON:', error);
+  }
+}
+
+document.getElementById('refreshInterval').addEventListener('change', (e) => {
+  clearInterval(intervalo);
+  const segundos = parseInt(e.target.value);
+  if (segundos > 0) {
+    intervalo = setInterval(carregarDados, segundos * 1000);
+  }
+});
+
+document.getElementById('fullscreenBtn').addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+});
+
+carregarDados();
+</script>
 </body>
 </html>
