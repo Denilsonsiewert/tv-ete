@@ -1,84 +1,14 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Painel Controle Estanhagem</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<title>Painel Indicadores</title>
+style.css
 </head>
 <body>
-<header>
-  <h1>📊 Controle Analítico da Estanhagem</h1>
-  <div class="controls">
-    <label>
-      Atualização automática:
-      <select id="refreshInterval">
-        <option value="0">Desativada</option>
-        <option value="300">5 min</option>
-        <option value="600" selected>10 min</option>
-        <option value="1800">30 min</option>
-      </select>
-    </label>
-    <button id="fullscreenBtn">Tela cheia</button>
-  </div>
-</header>
-
-<main class="grid" id="cardsContainer">
-  <!-- Cards serão gerados via JS -->
-</main>
-
-<footer>
-  <small>© 2025 Painel Industrial • GitHub Pages</small>
-</footer>
-
-<script>
-let intervalo = null;
-
-async function carregarDados() {
-  try {
-    const response = await fetch('dados.json');
-    const data = await response.json();
-
-    const container = document.getElementById('cardsContainer');
-    container.innerHTML = '';
-
-    data.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'card ' + (item.status.includes('ATRASADO') ? 'status-atrasado' : 'status-ok');
-
-      let html = `<h2>${item.tanque}</h2>`;
-      html += `<p><strong>Última Análise:</strong> ${item.ultimaAnalise}</p>`;
-      html += `<p><strong>Próxima Análise:</strong> ${item.proximaAnalise}</p>`;
-      if(item.concentracao) html += `<p><strong>Concentração:</strong> ${item.concentracao}</p>`;
-      html += `<p><strong>Status:</strong> ${item.status}</p>`;
-      if(item.proximaTroca) html += `<p><strong>Próxima Troca:</strong> ${item.proximaTroca}</p>`;
-      if(item.anodos) html += `<p><strong>Anodos:</strong> ${item.anodos}</p>`;
-
-      card.innerHTML = html;
-      container.appendChild(card);
-    });
-  } catch (error) {
-    console.error('Erro ao carregar JSON:', error);
-  }
-}
-
-document.getElementById('refreshInterval').addEventListener('change', (e) => {
-  clearInterval(intervalo);
-  const segundos = parseInt(e.target.value);
-  if (segundos > 0) {
-    intervalo = setInterval(carregarDados, segundos * 1000);
-  }
-});
-
-document.getElementById('fullscreenBtn').addEventListener('click', () => {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
-});
-
-carregarDados();
-</script>
+<h1>Indicadores do Mês</h1>
+<div id="conteudo"></div>
+script.js</script>
 </body>
 </html>
